@@ -1,0 +1,99 @@
+openapi: "3.0.2"
+info:
+  description: "Sellers Commerce Public APIs allow any third-party application to access certain un-restricted information,that can be shared with its users. This is limited only to read access in Sellers Commerce. The extent of access will be limited and in case of any misuse impacting the performance of Sellers Commerce solution will result in blocking any such application and entities as per the policies of MoHFW and taking any other appropriate action in accordance with law. The appointment availability data is cached and may be up to 5 minutes old. Further, these APIs are subject to a rate limit of 100 API calls per 5 minutes per IP. Please consider these points while using the APIs in your application."
+  version: "1.0.0"
+  title: "Public APIs"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+   name: "SellersCommerce"
+   url: "https://www.sellerscommerce.com/"
+   email: "mravikiran1998@gmail.com"
+
+tags:
+- name: "users"
+  description: "Operations about user"
+- name: "products"
+  description: "Access to sellers commmerce orders"
+servers:
+- url: https://localhost/5000
+  description: Local Server
+- url: http://localhost/5020
+  description: Live Server
+security:
+- app_id: []
+paths:
+  /users:
+    get:
+      tags:
+      - users
+      summary: request data
+      description: use to request
+      responses:
+        '200':
+          description: User Found
+        '400':
+          description: User not Found
+    put:   
+      tags:
+      - users
+      summary: sends a data
+      description: Use to return all customers
+      responses:
+        '200':
+          description: User Found
+        '400':
+          description: User not Found
+  /products:
+    get:
+      tags:
+      - products
+      summary: request data
+      description: use to request
+      responses:
+        '200':
+          description: User Found
+        '400':
+          description: User not Found
+    put:   
+      tags:
+      - products
+      summary: sends a data
+      description: Use to return all customers
+      responses:
+        '200':
+          description: User Found
+        '400':
+          description: User not Found
+
+components:
+    securitySchemes:
+      app_id:
+        type: apiKey
+        description: API key to authorize requests.
+        name: appid
+        in: query
+    schemas:
+      User:
+        type: object
+        required:
+          - name
+          - id
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+      Products:
+        type: object
+        required:
+          - name
+          - id
+        properties:
+          name:
+            type: string
+          id:
+            type: integer
+
+  
+
+
